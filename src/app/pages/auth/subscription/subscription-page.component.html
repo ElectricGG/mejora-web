@@ -1,0 +1,142 @@
+<div class="container__subscription">
+  <div class="body-steps">
+    <nb-card-body>
+      <nb-stepper orientation="horizontal">
+        <nb-step [label]="labelOne">
+          <ng-template #labelOne>Paso 1</ng-template>
+          <h3>Datos Personales</h3>
+          <form action="/submit-form" method="POST">
+            <h2>Únete Hoy</h2>
+            <div class="input-container">
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                placeholder="Ingresar nombre"
+              />
+            </div>
+            <div class="input-container">
+              <input
+                type="text"
+                id="apellidos"
+                name="apellidos"
+                required
+                placeholder="Ingresar apellidos"
+              />
+            </div>
+            <div class="input-container">
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                required
+                placeholder="Ingresar email"
+              />
+            </div>
+            <div class="input-container">
+              <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                placeholder="Ingresar contraseña"
+                required
+              />
+            </div>
+            <div class="input-container">
+              <select id="pais" name="pais" required>
+                <option value="">Selecciona un país...</option>
+                <option value="es">España</option>
+                <option value="mx">México</option>
+                <option value="ar">Argentina</option>
+                <!-- Agrega más países según sea necesario -->
+              </select>
+            </div>
+          </form>
+        </nb-step>
+        <nb-step [label]="labelTwo">
+          <ng-template #labelTwo>Paso 2</ng-template>
+          <h3>Escoga un tipo de plan</h3>
+          <div class="cards-container">
+            <div class="card" (click)="selectPlanAndAdvance('basic')">
+              <h4>Plan Básico</h4>
+              <p>Acceso a cursos básicos. Ideal para principiantes.</p>
+              <p class="precio">€9.99/mes</p>
+            </div>
+            <div class="card" (click)="selectPlanAndAdvance('intermediate')">
+              <h4>Plan Intermedio</h4>
+              <p>Acceso a todos los cursos intermedios. Soporte prioritario.</p>
+              <p class="precio">€19.99/mes</p>
+            </div>
+            <div class="card" (click)="selectPlanAndAdvance('advanced')">
+              <h4>Plan Avanzado</h4>
+              <p>Acceso ilimitado a todos los cursos y soporte 24/7.</p>
+              <p class="precio">€29.99/mes</p>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step label="Paso 3" [stepControl]="selected">
+          <div *ngIf="planRegister === 'basic'; else plan" class="plan">
+            <h3 class="text-white">
+              Estás a punto de registrarte con el plan basico
+            </h3>
+            <button nbButton (click)="toggleModal()">confirmar registro</button>
+          </div>
+          <ng-template #plan>
+            <div class="plan">
+              <h3>Método de pagos</h3>
+              <div class="payment-methods">
+                <h2>Selecciona un Método de Pago</h2>
+                <div class="method" (click)="selectPaymentMethod('creditCard')">
+                  <img
+                    src="./assets/images/credit-card-icon.svg"
+                    alt="Tarjeta de Crédito"
+                  />
+                  <span>Tarjeta de Crédito</span>
+                </div>
+                <div class="method" (click)="selectPaymentMethod('paypal')">
+                  <img src="./assets/images/paypal-icon.svg" alt="PayPal" />
+                  <span>PayPal</span>
+                </div>
+                <div
+                  class="method"
+                  (click)="selectPaymentMethod('bankTransfer')"
+                >
+                  <img
+                    src="./assets/images/bank-transfer-icon.svg"
+                    alt="Transferencia Bancaria"
+                  />
+                  <span>Transferencia Bancaria</span>
+                </div>
+              </div>
+              <button nbButton (click)="toggleModal()">
+                confirmar registro
+              </button>
+            </div>
+          </ng-template>
+          <div class="modal" *ngIf="showModal" [ngClass]="{ show: showModal }">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="green"
+                class="bi bi-check-circle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                />
+              </svg>
+              <p>
+                Registro exitoso, se le envió un mensaje para confirmar su
+                correo electrónico
+              </p>
+            </div>
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </div>
+</div>

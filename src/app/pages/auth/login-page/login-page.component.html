@@ -1,0 +1,32 @@
+<div class="container__login">
+  <div class="content">
+    <section>
+      <p class="h2 text-white fs-1">Inicia sesión</p>
+    </section>
+
+    <form autocomplete="true">
+      <div class="form-content">
+        <div class="d-flex flex-column input">
+          <input placeholder="Ingresar email" />
+          <input placeholder="Ingresar contraseña" />
+        </div>
+        <div class="d-flex align-items-end justify-content-end text-white">
+          Olvidaste tu contraseña
+        </div>
+      </div>
+      <section
+        class="d-flex flex-column align-items-center justify-content-center"
+      >
+        <div class="container__login__actions mt-5">
+          <button>Iniciar sesión</button>
+        </div>
+      </section>
+    </form>
+    <footer>
+      <div>
+        <span class="text-white">Primera vez en aqui ?</span>
+        <a [routerLink]="'/auth/login/registro'" class="text-primary"> Suscríbete ahora. </a>
+      </div>
+    </footer>
+  </div>
+</div>
